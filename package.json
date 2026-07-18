@@ -1,7 +1,7 @@
 {
   "name": "polar-h10-web",
-  "version": "0.1.0",
-  "description": "Full-access Polar H10 chest-strap sensor library over Web Bluetooth — ECG, accelerometer, HR/RR, and internal exercise-recording management. Hand-ported from the official Polar BLE SDK.",
+  "version": "0.1.1",
+  "description": "Library for the Polar H10 chest-strap sensor that uses Web Bluetooth - ECG, accelerometer, HR/RR and managing recorded exercises.",
   "repository": {
     "type": "git",
     "url": "https://github.com/fstanis/polar-h10-web.git"
