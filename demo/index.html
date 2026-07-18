@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>polar-h10-web sample</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>❤️</text></svg>"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+      body {
+        margin: 0 auto;
+        max-width: 720px;
+        padding: 20px 20px 0;
+        background: Canvas;
+        color: CanvasText;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.15rem;
+        margin-top: 2.5rem;
+      }
+      h3 {
+        font-size: 0.95rem;
+      }
+      button {
+        font: inherit;
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1px solid color-mix(in srgb, CanvasText 25%, transparent);
+        background: color-mix(in srgb, CanvasText 6%, Canvas);
+        color: inherit;
+        cursor: pointer;
+      }
+      pre {
+        background: color-mix(in srgb, CanvasText 5%, Canvas);
+        border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+        border-radius: 8px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        line-height: 1.45;
+      }
+      #output {
+        position: sticky;
+        bottom: 0;
+        background: Canvas;
+        border-top: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+        padding: 8px 0 12px;
+        margin-top: 2.5rem;
+      }
+      #output h3 {
+        margin: 4px 0 8px;
+      }
+      #log {
+        margin: 0;
+        height: 140px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>polar-h10-web sample</h1>
+    <p>
+      <code>polar-h10-web</code> talks to the
+      <a href="https://www.polar.com/en/sensors/h10-heart-rate-sensor" target="_blank">Polar H10</a> chest strap over
+      the
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API" target="_blank">Web Bluetooth API</a
+      >. This page walks through the basics: connect to a strap, then stream heart rate, raw ECG, and accelerometer
+      data. Each button runs the snippet shown below it; results appear in the live output at the bottom.
+    </p>
+
+    <h2>Connect</h2>
+    <p>
+      Open the browser's device chooser (this requires a user gesture, hence the button), connect, and read the device
+      info. All other snippets use the <code>device</code> this one creates.
+    </p>
+    <button id="connect">Connect</button>
+    <button id="disconnect">Disconnect</button>
+    <h3>JavaScript Snippet</h3>
+    <pre><code id="connect-snippet"></code></pre>
+
+    <h2>Heart rate</h2>
+    <p>
+      Streams are async iterables — consume them with <code>for await</code> and stop them by aborting the
+      <code>AbortSignal</code> passed at start. Heart rate delivers one sample per second with beat-to-beat RR
+      intervals.
+    </p>
+    <button id="heart-rate">Start heart rate</button>
+    <button id="heart-rate-stop">Stop</button>
+    <h3>JavaScript Snippet</h3>
+    <pre><code id="heart-rate-snippet"></code></pre>
+
+    <h2>ECG</h2>
+    <p>Raw ECG at a fixed 130 Hz, in microvolts. The snippet logs one sample per second.</p>
+    <button id="ecg">Start ECG</button>
+    <button id="ecg-stop">Stop</button>
+    <h3>JavaScript Snippet</h3>
+    <pre><code id="ecg-snippet"></code></pre>
+
+    <h2>Accelerometer</h2>
+    <p>
+      Acceleration in milli-G on three axes. Sample rate (25/50/100/200 Hz) and range (2/4/8 G) are chosen at start. The
+      snippet logs one sample per second.
+    </p>
+    <button id="acc">Start accelerometer</button>
+    <button id="acc-stop">Stop</button>
+    <h3>JavaScript Snippet</h3>
+    <pre><code id="acc-snippet"></code></pre>
+
+    <div id="output">
+      <h3>Live Output</h3>
+      <pre id="log"></pre>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

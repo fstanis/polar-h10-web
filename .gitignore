@@ -1,0 +1,10 @@
+node_modules/
+dist/
+pages-dist/
+
+# Generated protobuf codecs — regenerated from proto/ via `bun run gen:proto`
+src/proto/gen/
+*.log
+.DS_Store
+.bun/
+scratchpad/

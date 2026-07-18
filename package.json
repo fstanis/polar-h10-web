@@ -1,0 +1,54 @@
+{
+  "name": "polar-h10-web",
+  "version": "0.1.0",
+  "description": "Full-access Polar H10 chest-strap sensor library over Web Bluetooth — ECG, accelerometer, HR/RR, and internal exercise-recording management. Hand-ported from the official Polar BLE SDK.",
+  "type": "module",
+  "license": "See Polar_SDK_License.txt",
+  "keywords": [
+    "polar",
+    "h10",
+    "web-bluetooth",
+    "ecg",
+    "heart-rate",
+    "bluetooth",
+    "ble",
+    "accelerometer"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "bun": ">=1.2.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "POLAR_SDK_LICENSE.txt",
+    "PROTOCOL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "prepare": "bun run gen:proto",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "gen:proto": "bunx buf generate",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "prettier --check .",
+    "format": "prettier --write .",
+    "demo": "bun --hot ./demo/index.html"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.2.5"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.50.0",
+    "@bufbuild/protoc-gen-es": "^2.2.5",
+    "@types/bun": "^1.3.14",
+    "@types/web-bluetooth": "^0.0.20",
+    "prettier": "^3.9.5",
+    "typescript": "^5.7.3"
+  }
+}
